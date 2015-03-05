@@ -1,0 +1,31 @@
+#!/bin/sh
+
+xrandr -q
+
+read -p "Quelle résolution ? (sous forme 1280 720 60) " reso
+
+line=`gtf $reso | grep Modeline | cut -c 12-`
+lineshort=`gtf $reso | grep Modeline | gawk '{print $2}'`
+
+read -p "Droite, gauche ou miroir ? d/g/m : " choice
+
+out=`xrandr -q | gawk 'NR==2''{print $1}'`
+
+if [ $choice = 'd' ]
+then
+    final="--right-of $out"
+elif [ $choice = 'g' ]
+then
+    final="--left-of $out"
+elif [ $choice = 'm' ]
+then
+    final="--same-as $out"
+else
+    echo "Mauvaise entrée"
+fi
+
+screen=`xrandr -q | grep " connected" | gawk 'NR==2''{print $1}'`
+
+xrandr --newmode $line
+xrandr --addmode $screen $lineshort
+xrandr --output $screen --mode $lineshort $final
