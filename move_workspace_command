@@ -11,3 +11,5 @@ then
 else
     echo "Mauvaise entrée"
 fi
+
+rm null
