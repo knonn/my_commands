@@ -1,4 +1,4 @@
-# Some usefull commands I need
+# Some usefull commands
 
 ## Installation
 
