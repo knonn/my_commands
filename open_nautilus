@@ -1,7 +1,6 @@
 #!/bin/sh
 
-pwd=`pwd`
-nautilus $pwd > null&
+nautilus ./ > null&
 rm null
 sleep 1
 clear
