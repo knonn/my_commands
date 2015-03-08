@@ -6,8 +6,9 @@ echo "INFORMATIONS :"
 echo "-------------------------------------------"
 xrandr -q
 echo "-------------------------------------------"
+echo "Les informations ci-dessus vous permettent de connaitre les résolutions disponibles pour votre écran externe"
 echo "\n"
-read -p "Résolution souhaitée : " resos
+read -p "Résolution souhaitée (ex : 1280x720) : " resos
 read -p "Fréquence de rafraichissement souhaitée (Hz) : " freq
 
 reso=`echo $resos |sed 's/\x/ /'`
@@ -17,7 +18,8 @@ lineshort=`gtf $reso $freq | grep Modeline | gawk '{print $2}'`
 while [ 1 ]
 do
     
-    read -p "Droite, gauche ou miroir ? d/g/m : " choice
+    echo "Emplacement de l'écran externe\n\t1. Droite (d)\n\t2. Gauche (g)\n\t3. Miroir (m)"
+    read -p "Choix : " choice
     
     out=`xrandr -q | gawk 'NR==2''{print $1}'`
     
