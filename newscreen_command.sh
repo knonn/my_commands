@@ -1,23 +1,28 @@
 #!/bin/sh
 
 case "$1" in
-    off)
+    off|-off)
 	if ! xrandr -q | grep " connected" | gawk 'NR==2''{print $1}'; then
 	    screen=`xrandr -q | grep " connected" | gawk 'NR==2''{print $1}'`
 	    xrandr --output $screen --off
+	    exit 0
 	else
 	    echo "Ecran externe non branché"
 	    exit 1
 	fi
-
-	
-	;;
-    --help)
-	echo "Usage : \n\toff : Turn off external screen"
+       	;;
+    -help)
+	echo "Usage\n
+\toff   or   -off   :   Turn off external screen\n
+\tn     or   -new   :   Configure external screen"
 	exit 1
 	;;
-    *)
+    n|-new)
 	break
+	;;
+    *)
+	echo "Use -help to display help"
+	exit 1;
 	;;
 esac
 
