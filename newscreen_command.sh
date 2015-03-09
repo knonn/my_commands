@@ -45,3 +45,5 @@ screen=`xrandr -q | grep " connected" | gawk 'NR==2''{print $1}'`
 xrandr --newmode $line
 xrandr --addmode $screen $lineshort
 xrandr --output $screen --mode $lineshort $final
+clear
+exit 0

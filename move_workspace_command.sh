@@ -19,3 +19,5 @@ do
 done
 
 rm null
+clear
+exit 0
