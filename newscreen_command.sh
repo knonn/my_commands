@@ -2,15 +2,15 @@
 
 case "$1" in
     off|-off)
-	if ! xrandr -q | grep " connected" | gawk 'NR==2''{print $1}'; then
-	    screen=`xrandr -q | grep " connected" | gawk 'NR==2''{print $1}'`
+	screen=`xrandr -q | grep " connected" | gawk 'NR==2''{print $1}'`
+	if [ -z $screen ]; then
+	    echo "L'écran externe n'est pas allumé"
+	    exit 1
+	else
 	    xrandr --output $screen --off
 	    exit 0
-	else
-	    echo "Ecran externe non branché"
-	    exit 1
 	fi
-       	;;
+	;;
     -help)
 	echo "Usage\n
 \toff   or   -off   :   Turn off external screen\n
@@ -35,7 +35,13 @@ echo "-------------------------------------------"
 echo "Les informations ci-dessus vous permettent de connaitre les résolutions disponibles pour votre écran externe"
 echo "\n"
 read -p "Résolution souhaitée (ex : 1280x720) : " resos
-read -p "Fréquence de rafraichissement souhaitée (Hz) : " freq
+read -p "Fréquence de rafraichissement souhaitée (Hz) [60]: " freq1
+
+if [ -z $freq1 ]; then
+    freq=60
+else
+    freq=$freq1
+fi 
 
 reso=`echo $resos |sed 's/\x/ /'`
 line=`gtf $reso $freq | grep Modeline | cut -c 12-`
