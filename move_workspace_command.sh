@@ -2,8 +2,8 @@
 
 while [ 1 ]
 do
-    
-    read -p "Bouger ce bureau sur l'écran de gauche ou de droite ? (d/g) " move
+    echo "Bouger ce bureau sur l'écran :\n\t1. De gauche (g)\n\t2. De droite (d)"
+    read -p "Choix : " move
 
     if [ $move = 'd' ]
     then
@@ -14,7 +14,7 @@ do
 	i3-msg move workspace to output left > null
 	break
     else
-	echo "Mauvaise entrée"
+	echo "Mauvaise entrée,recommencez"
     fi
 done
 
