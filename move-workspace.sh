@@ -16,24 +16,29 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-while [ 1 ]
-do
-    echo "Bouger ce bureau sur l'écran :\n\t1. De gauche (g)\n\t2. De droite (d)"
-    read -p "Choix : " move
-
-    if [ $move = 'd' ]
-    then
+case $1 in
+    -d)
 	i3-msg move workspace to output right > null
-	break
-    elif [ $move = 'g' ]
-    then
+	rm null
+	exit 0
+	;;
+    -g)
 	i3-msg move workspace to output left > null
-	break
-    else
-	echo "Mauvaise entrée,recommencez"
-    fi
-done
+	rm null
+	exit 0
+	;;
+    -h)
+	echo "Ce programme permet de changer l'écran d'affichage du workspace de votre choix sous i3-window-manager\n
+Utilisation :\n
+\t-d              Déplacement du workspace vers l'écran de droite\n
+\t-g              Déplacement du workspace vers l'écran de gauche\n
+\t-h              Afficher cette aide"
+	exit 1
+	;;
+    *)
+	echo "Usage : move-workspace [-d|-g][-h]"
+	exit 1
+	;;
+esac
 
-rm null
-clear
 exit 0
