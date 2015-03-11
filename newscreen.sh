@@ -67,7 +67,7 @@ lineshort=`gtf $reso $freq | grep Modeline | gawk '{print $2}'`
 while [ 1 ]
 do
     
-    echo "Emplacement de l'écran externe\n\t1. Droite (d)\n\t2. Gauche (g)\n\t3. Miroir (m)"
+    echo "Emplacement de l'écran externe\n\t1. Droite (d)\n\t2. Gauche (g)\n\t3. Au dessus (de)\n\t4. En dessous (ds)\n\t5. Miroir (m)"
     read -p "Choix : " choice
     
     out=`xrandr -q | gawk 'NR==2''{print $1}'`
@@ -83,6 +83,14 @@ do
     elif [ $choice = 'm' ]
     then
 	final="--same-as $out"
+	break
+    elif [ $choice = "ds" ]
+    then
+	final="--below $out"
+	break
+    elif [ $choice = "de" ]
+    then
+	final="--above $out"
 	break
     else
 	echo "Mauvaise entrée"
