@@ -17,12 +17,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 case $1 in
-    -d)
+    -d|d)
 	i3-msg move workspace to output right > null
 	rm null
 	exit 0
 	;;
-    -g)
+    -g|g)
 	i3-msg move workspace to output left > null
 	rm null
 	exit 0
