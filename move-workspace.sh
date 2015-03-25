@@ -18,13 +18,11 @@
 
 case $1 in
     -d|d)
-	i3-msg move workspace to output right > null
-	rm null
+	i3-msg move workspace to output right > /dev/null
 	exit 0
 	;;
     -g|g)
-	i3-msg move workspace to output left > null
-	rm null
+	i3-msg move workspace to output left > /dev/null
 	exit 0
 	;;
     -h)
