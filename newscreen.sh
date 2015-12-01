@@ -59,7 +59,7 @@ if [ -z $freq1 ]; then
     freq=60
 else
     freq=$freq1
-fi 
+fi
 
 reso=`echo $resos |sed 's/\x/ /'`
 line=`gtf $reso $freq | grep Modeline | cut -c 12-`
@@ -67,12 +67,12 @@ lineshort=`gtf $reso $freq | grep Modeline | gawk '{print $2}'`
 
 while [ 1 ]
 do
-    
+
     echo "Emplacement de l'écran externe\n\t1. Droite (d)\n\t2. Gauche (g)\n\t3. Au dessus (de)\n\t4. En dessous (ds)\n\t5. Miroir (m)"
     read -p "Choix : " choice
-    
+
     out=`xrandr -q | gawk 'NR==2''{print $1}'`
-    
+
     if [ $choice = 'd' ]
     then
 	final="--right-of $out"
