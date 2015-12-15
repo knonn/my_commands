@@ -25,7 +25,7 @@ case "$1" in
 	    exit 1
 	else
 	    xrandr --output $screen --off
-	    feh --bg-scale ~/Documents/images/galaxy.jpg
+	    feh --bg-scale ~/Documents/images/red_blue.jpg
 	    exit 0
 	fi
 	;;
@@ -103,6 +103,6 @@ screen=`xrandr -q | grep " connected" | gawk 'NR==2''{print $1}'`
 xrandr --newmode $line
 xrandr --addmode $screen $lineshort
 xrandr --output $screen --mode $lineshort $final
-feh --bg-scale ~/Documents/images/galaxy.jpg
+feh --bg-scale ~/Documents/images/red_blue.jpg
 clear
 exit 0
