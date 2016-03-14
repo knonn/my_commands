@@ -26,6 +26,8 @@ case "$1" in
 	else
 	    xrandr --output $screen --off
 	    #cb-compositor --restart
+	    sleep 2
+	    nitrogen --restore
 	    conkywonky
 	    exit 0
 	fi
@@ -105,6 +107,8 @@ xrandr --newmode $line
 xrandr --addmode $screen $lineshort
 xrandr --output $screen --mode $lineshort $final
 #cb-compositor --restart
+sleep 2
 conkywonky
+nitrogen --restore
 clear
 exit 0
