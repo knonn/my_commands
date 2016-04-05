@@ -2,7 +2,7 @@
 apt-get update 
 
 apt-get install $(apt-cache depends xscreensaver | awk '$1~/Dépend/{printf $2" "}')
-apt-get install libx11-dev intltool libxt-dev libxext-dev libxpm-dev libgtk2.0-dev libxml2-dev libglade2-dev libatk1.0-0 libc6
+apt-get install libx11-dev intltool libxt-dev libxext-dev libxpm-dev libgtk2.0-dev libxml2-dev libglade2-dev
 apt-get source xscreensaver
 
 cd xscreensaver-5.30
