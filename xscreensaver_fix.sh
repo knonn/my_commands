@@ -1,5 +1,7 @@
 #!/bin/sh
-apt-get update 
+apt-get update
+
+apt-get install awk
 
 apt-get install $(apt-cache depends xscreensaver | awk '$1~/Dépend/{printf $2" "}')
 apt-get install libx11-dev intltool libxt-dev libxext-dev libxpm-dev libgtk2.0-dev libxml2-dev libglade2-dev
